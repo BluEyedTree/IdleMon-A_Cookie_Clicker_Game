@@ -1,4 +1,3 @@
-
 import java.awt.Label;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,7 +23,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 /**
  *
- * @author Tom, Cora, Mimi
+ * @author Tom
  */
 public class javaFX extends Application 
 
@@ -33,10 +32,6 @@ public class javaFX extends Application
  Idlemon CurrentIdleMon;
  Map IdleButton;
  
-
-
-    
-    
 
     @Override
     public void start(Stage theStage) 
@@ -64,6 +59,11 @@ public class javaFX extends Application
         Circle LvlUpCircle = new Circle(450,450,32);
         test.add(targetData);
         
+         //Bthread updater = new Bthread(testworld); 
+         //updater.start();
+         
+         
+         
         IntValue points = new IntValue(0);
         
         //sets up the world
@@ -77,6 +77,9 @@ public class javaFX extends Application
         IdleMonArray.add(RIdle);
         IdleMonArray.add(GIdle);
         testworld.setStartIdlemon(IdleMonArray);
+        //THREAD PLAY
+        Runnable updater = new Bthread(testworld);
+         new Thread(updater).start();
         
         //Creates a hashmap of Idlemon and their associated buttons
         Map<Circle,Idlemon> IdleButton = new HashMap<Circle,Idlemon>();
@@ -95,7 +98,7 @@ public class javaFX extends Application
                 {
                     
                  for(Map.Entry<Circle, Idlemon> currentEntry : IdleButton.entrySet()){ 
-                     currentEntry.getValue().convert();
+                    
                  
                     //If an Idlemon is clicks it is set to be the CurrentIdleMon
                     //The currentIdlemon has its buy and level up functions called
@@ -155,7 +158,9 @@ public class javaFX extends Application
         
 		
         new AnimationTimer()
+                
         {
+            
             public void handle(long currentNanoTime)
             {
            
@@ -164,8 +169,7 @@ public class javaFX extends Application
                 //Clear the canvas
                 gc.setFill( new Color(0.85, 0.85, 1.0, 1.0));
                 gc.fillRect(0,0, 512,512);
-               
-               
+                
           
                 for(Circle targetData: IdleButton.keySet()){
                 
@@ -217,17 +221,24 @@ public class javaFX extends Application
                 //The Blue background color                 
                 gc.setFill( Color.BLUE );
                 
-                //Deals with updating the label on top to represent the worlds current resources
+                //Changes the label if the game is won
+                if(testworld.checkWin()){
+                 Map ResourceMap = testworld.getResources();
+                  
+                String message = "Challenge" +  " completed in " + testworld.timeCompleted() + " seconds";
+                gc.setFill( Color.BLUE );
+                gc.fillText( message, 50, 36 );
+                gc.strokeText( message, 50, 36 );
+                }
+                else{
                 Map ResourceMap = testworld.getResources();
                 String message = "Flame: " + ResourceMap.get("flame") +"  Grass: "+ ResourceMap.get("grass")+ "  Water: " + ResourceMap.get("water") ;
                 
-                //Changes the label if the game is won
-                if(testworld.checkWin()){
-                 message = "Challenge" +  " completed in " + testworld.timeCompleted() + " seconds";
+                gc.fillText( message, 50, 36 );
+                gc.strokeText( message, 50, 36 );
                 }
                //Sets the location of the message label
-               gc.fillText( message, 50, 36 );
-                gc.strokeText( message, 50, 36 );
+               
             }
         }.start();
 
