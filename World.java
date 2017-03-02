@@ -19,9 +19,9 @@ abstract class World implements State
     //set start amount of resources
     public abstract void setInitialResources();
     //return resources 
-    public abstract Map<String,Integer> getResources();
+    public abstract Map<String,Double> getResources();
     //modify amount of resources
-    public abstract void modifyResources(String name, Integer amount);
+    public abstract void modifyResources(String name, Double amount);
     //set start amount/kind of idlemon
     public abstract void setStartIdlemon(ArrayList<Idlemon> inputIdleMonArray);
     //return idlemon 

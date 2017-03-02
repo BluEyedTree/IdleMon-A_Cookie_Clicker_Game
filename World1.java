@@ -23,15 +23,15 @@ public class World1 extends World
     
     public int counter=0;
     //map of resources
-    Map<String,Integer> resources = new HashMap<>();
+    Map<String,Double> resources = new HashMap<>();
     //arraylist of idlemon
     ArrayList<Idlemon> idlemon = new ArrayList<Idlemon>();
     //amount of flame resource
-    Integer flame;
+    Double flame;
     //amount of water resource
-    Integer water;
+    Double water;
     //amount of grass resource
-    Integer grass;
+    Double grass;
     //take note of start time
     long startTime;
     //take note of current time
@@ -54,9 +54,9 @@ public class World1 extends World
     {
         //initial values of resources
         startTime = System.nanoTime();
-        flame = 26;
-        water = 68;
-        grass = 115;
+        flame = 26.0;
+        water = 68.0;
+        grass = 115.0;
         resources.put("flame", flame);
         resources.put("water", water);
         resources.put("grass", grass);
@@ -64,14 +64,14 @@ public class World1 extends World
 
     //return resources
     @Override
-    public Map<String, Integer> getResources() 
+    public Map<String, Double> getResources() 
     {
         return resources;   
     }
     
     //modify amount of resources
     @Override
-    public void modifyResources(String name, Integer amount)
+    public void modifyResources(String name, Double amount)
     {
         if(name.equals("flame"))
         {
@@ -116,9 +116,9 @@ public class World1 extends World
     public Boolean checkWin() 
     {
         //satisfactory amounta to be used to check the win
-        Integer minFlame = 1300;
-        Integer minWater = 370;
-        Integer minGrass = 300;
+        Double minFlame = 1300.0;
+        Double minWater = 370.0;
+        Double minGrass = 300.0;
         
         //checks if minimum reqs. are satisfied
         if((resources.get("flame") >= minFlame) & (resources.get("water") >= minWater) & (resources.get("grass") >= minGrass))

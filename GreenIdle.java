@@ -1,6 +1,5 @@
 
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,7 +17,7 @@ public class GreenIdle extends Idlemon {
     
        
     public GreenIdle(World inputWorld){
-       super("GreenIdle",1,20,30,100,new ArrayList<String>(Arrays.asList(new String[] { "water" })),new ArrayList<String>(Arrays.asList(new String[] { "grass" })),inputWorld);
+       super("GreenIdle",1.0,20.0,30.0,100.0,new ArrayList<String>(Arrays.asList(new String[] { "water" })),new ArrayList<String>(Arrays.asList(new String[] { "grass" })),inputWorld);
         /**
          * Green IdleMon convert water to grass.
          * The first arrayList fed in is the resource the idlemon consumes
@@ -30,7 +29,8 @@ public class GreenIdle extends Idlemon {
     
       public Idlemon buyNew(){
          
-         world.modifyResources(ConsumeResources.get(0), -costToBuy);
+         world.modifyResources("grass", -costToBuy);
+         world.addIdlemon(new GreenIdle(world));
         return(new GreenIdle(world));
      }
 }

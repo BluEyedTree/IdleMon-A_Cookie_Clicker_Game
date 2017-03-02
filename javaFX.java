@@ -1,4 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import java.awt.Label;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -25,13 +33,13 @@ import javafx.scene.layout.GridPane;
  *
  * @author Tom
  */
-public class javaFX extends Application 
+public class JavaFX extends Application 
 
 {
 
  Idlemon CurrentIdleMon;
  Map IdleButton;
- 
+
 
     @Override
     public void start(Stage theStage) 
@@ -59,6 +67,8 @@ public class javaFX extends Application
         Circle LvlUpCircle = new Circle(450,450,32);
         test.add(targetData);
         
+         DecimalFormat df = new DecimalFormat();
+         df.setRoundingMode(RoundingMode.DOWN);
          //Bthread updater = new Bthread(testworld); 
          //updater.start();
          
@@ -183,7 +193,7 @@ public class javaFX extends Application
                 gc.drawImage( waterImage, 
                     targetData.getX()+(10) - targetData.getRadius(),
                     targetData.getY()+(10) - targetData.getRadius() );
-                    String pointsText = "" + IdleButton.get(targetData).getLevel();
+                    String pointsText = "" + df.format(IdleButton.get(targetData).getLevel());
                     gc.strokeText( pointsText, targetData.getX()+10, targetData.getY()+20);
                 }
                  //Creates Circles for the RedIdlemon
@@ -191,7 +201,7 @@ public class javaFX extends Application
                      gc.drawImage( fireImage, 
                     targetData.getX()+(10) - targetData.getRadius(),
                     targetData.getY()+(10) - targetData.getRadius() );
-                    String pointsText = "" + IdleButton.get(targetData).getLevel();
+                    String pointsText = "" + df.format(IdleButton.get(targetData).getLevel());
                     gc.strokeText( pointsText, targetData.getX()+10, targetData.getY()+20);
                 }
                  //Creates Circles for the GreenIdlemon
@@ -199,7 +209,7 @@ public class javaFX extends Application
                     gc.drawImage( grassImage, 
                     targetData.getX()+(10) - targetData.getRadius(),
                     targetData.getY()+(10) - targetData.getRadius() );
-                    String pointsText = "" + IdleButton.get(targetData).getLevel();
+                    String pointsText = "" + df.format(IdleButton.get(targetData).getLevel());
                     gc.strokeText( pointsText, targetData.getX()+10, targetData.getY()+20);
                 }
                                 }
@@ -231,8 +241,9 @@ public class javaFX extends Application
                 gc.strokeText( message, 50, 36 );
                 }
                 else{
+                
                 Map ResourceMap = testworld.getResources();
-                String message = "Flame: " + ResourceMap.get("flame") +"  Grass: "+ ResourceMap.get("grass")+ "  Water: " + ResourceMap.get("water") ;
+                String message = "Flame: " +df.format(ResourceMap.get("flame")) +"  Grass: "+ df.format(ResourceMap.get("grass"))+ "  Water: " + df.format(ResourceMap.get("water")) ;
                 
                 gc.fillText( message, 50, 36 );
                 gc.strokeText( message, 50, 36 );

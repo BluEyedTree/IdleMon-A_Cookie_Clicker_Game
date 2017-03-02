@@ -33,8 +33,10 @@ public class Bthread implements Runnable {
             
         }
         ArrayList<Idlemon> IdleArray = thisWorld.getIdlemon();
+       
         for(Idlemon Idle: IdleArray){
-            Idle.produce();
+            
+            Idle.convert();
         }
         //System.out.println("test");
             Thread.sleep(1400);

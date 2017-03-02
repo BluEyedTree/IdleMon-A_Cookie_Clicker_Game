@@ -7,7 +7,7 @@
 
 /**
  *
- * @author Tom, Cora, Mimi
+ * @author Tom
  */
 import javafx.geometry.Point2D;
 

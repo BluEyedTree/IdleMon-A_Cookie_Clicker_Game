@@ -9,12 +9,12 @@ import static javafx.application.Application.launch;
 
 /**
  *
- * @author Tom, Cora, Mimi
+ * @author Tom
  */
 public class main {
     public static void main(String[] args) 
     {
        
-        javaFX.launch(javaFX.class);
+        JavaFX.launch(JavaFX.class);
     }
 }

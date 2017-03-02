@@ -21,16 +21,16 @@ public class World2 extends World
     //name of World challenge
     public static String name = "WunderbareWasserfall";
     //map of resources
-    Map<String,Integer> resources = new HashMap<>();
+    Map<String,Double> resources = new HashMap<>();
       public int counter=0;
     //arraylist of idlemon
     ArrayList<Idlemon> idlemon = new ArrayList<>();
     //amount of flame resource
-    Integer flame;
+    Double flame;
     //amount of water resource
-    Integer water;
+    Double water;
     //amount of grass resource
-    Integer grass;
+    Double grass;
     //take note of start time
     long startTime;
     //take note of current time
@@ -50,9 +50,9 @@ public class World2 extends World
     {
         //initial values of resources
         startTime = System.nanoTime();
-        flame = 100;
-        water = 68;
-        grass = 55;
+        flame = 100.0;
+        water = 68.0;
+        grass = 55.0;
         resources.put("flame", flame);
         resources.put("water", water);
         resources.put("grass", grass);
@@ -60,7 +60,7 @@ public class World2 extends World
 
     //return resources
     @Override
-    public Map<String, Integer> getResources() 
+    public Map<String, Double> getResources() 
     {
         return resources;   
     }
@@ -70,7 +70,7 @@ public class World2 extends World
     }
     //modify amount of resources
     @Override
-    public void modifyResources(String name, Integer amount)
+    public void modifyResources(String name, Double amount)
     {
         if(name.equals("flame"))
         {
@@ -115,9 +115,9 @@ public class World2 extends World
     public Boolean checkWin() 
     {
         //satisfactory amounta to be used to check the win
-        Integer minFlame = 200;
-        Integer minWater = 990;
-        Integer minGrass = 1000;
+        Double minFlame = 200.0;
+        Double minWater = 990.0;
+        Double minGrass = 1000.0;
         
         //checks if minimum reqs. are satisfied
         if((resources.get("flame") >= minFlame) & (resources.get("water") >= minWater) & (resources.get("grass") >= minGrass))

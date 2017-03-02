@@ -1,5 +1,6 @@
 
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,7 +19,7 @@ public class RedIdle extends Idlemon {
     
     public RedIdle(World inputWorld){
       
-       super("RedIdle",1,20,30,100,new ArrayList<String>(Arrays.asList(new String[] { "grass" })),new ArrayList<String>(Arrays.asList(new String[] { "flame" })),inputWorld);
+       super("RedIdle",1.0,20.0,30.0,100.0,new ArrayList<String>(Arrays.asList(new String[] { "grass" })),new ArrayList<String>(Arrays.asList(new String[] { "flame" })),inputWorld);
         /**
          * Blue IdleMon converts grass to flame.
          * 
@@ -33,7 +34,8 @@ public class RedIdle extends Idlemon {
     
      public Idlemon buyNew(){
          
-         world.modifyResources(ConsumeResources.get(0), -costToBuy);
+         world.modifyResources("flame", -costToBuy);
+         world.addIdlemon(new RedIdle(world));
          return(new RedIdle(world));
      }
     

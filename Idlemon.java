@@ -18,15 +18,15 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class Idlemon {
     String Name;
-    int currentLevel;
-    Integer costToBuy;
+    double currentLevel;
+    double costToBuy;
    
     public ArrayList<String> ConsumeResources = new ArrayList<>();
     public ArrayList<String> ProduceResources = new ArrayList<>();
     public World world;
-    public int consumeCost;
-    public int produceAmount;
-    public Idlemon(String name, int CurrentLevel, int consumeCost, int produceAmount, Integer Cost,  ArrayList<String> consumeResources,ArrayList<String> produceResources, World world){
+    public double consumeCost;
+    public double produceAmount;
+    public Idlemon(String name, double CurrentLevel, double consumeCost, double produceAmount, Double Cost, ArrayList<String> produceResources,ArrayList<String> consumeResources, World world){
         this.Name = name;
         this.currentLevel = CurrentLevel;
         for(String resourceToConsume: consumeResources){
@@ -55,6 +55,7 @@ public abstract class Idlemon {
     }
     
     public void produce(){
+        
        for (String resourceToConsume: this.ConsumeResources){
             world.modifyResources(resourceToConsume, produceAmount*currentLevel);
             
@@ -65,6 +66,7 @@ public abstract class Idlemon {
         
         consume();
         produce();
+        produce();
         special(); //a hook in our template method 
     }
     
@@ -72,14 +74,14 @@ public abstract class Idlemon {
     //This should be overiden by a subclass to add a special feature to the convert method. 
     
     
-    public int getLevel(){
+    public double getLevel(){
         return this.currentLevel;
     }
     
     
     public Map getCost(){
          //Change this to change the price
-        Map<ArrayList, Integer> costMap = new HashMap();
+        Map<ArrayList, Double> costMap = new HashMap();
         costMap.put(this.ProduceResources,costToBuy);
         return costMap;
     }
